@@ -1,11 +1,11 @@
 @page "/todolist"
 
-<h1>Todo List</h1>
+<h1>To do's</h1>
 
 <Addons>
     <Addon AddonType="AddonType.Body">
         <Column ColumnSize="ColumnSize.Is6">
-            <TextEdit Placeholder="todo" @bind-Text="newTodo" />
+            <TextEdit Placeholder="Digite o item a ser feito" @bind-Text="newTodo" />
         </Column>
         <Column ColumnSize="ColumnSize.Is3">
             <Check TValue="bool" @bind-Checked="@checkList">Já fiz</Check>
@@ -16,19 +16,21 @@
             </Addon>
         </Column>    
     </Addon>
-
-    
 </Addons>
-
-
+<br />
 <Table>
-    <TableHeader ThemeContrast="ThemeContrast.Light"></TableHeader>
+    <TableHeader ThemeContrast="ThemeContrast.Light">
+        <TableRow>
+            <TableHeaderCell>TODO</TableHeaderCell>
+            <TableHeaderCell>DONE</TableHeaderCell>
+        </TableRow>
+    </TableHeader>
     <TableBody>
         @foreach (var item in listaTodo)
         {
             <TableRow>
-                <TableRowCell>@item.Title </TableRowCell>    
-                <TableRowCell><Check TValue="bool" Checked="@item.Done"></Check> </TableRowCell>    
+                <TableRowCell>@item.Title </TableRowCell>
+                <TableRowCell><Check TValue="bool" Checked="@item.Done"></Check></TableRowCell>
             </TableRow>
         }
     </TableBody>
@@ -38,6 +40,7 @@
 
 @code{
 
+    
     List<Todo2> listaTodo;
     public bool check { get; set; }
     public bool checkList { get; set; }
@@ -54,11 +57,12 @@
 
         listaTodo = new List<Todo2>(){
 
-    new Todo2(){Title = "Passer com o cachorro", Done = false},
-    new Todo2(){Title = "Comprar leite", Done=false},
-    new Todo2(){Title = "Estudar programação", Done = true}
+        new Todo2(){Title = "Passer com o cachorro", Done = false },
+        new Todo2(){Title = "Estudar programação", Done = true}
     };
+    
 
     }
+
 
 }
